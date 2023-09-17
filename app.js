@@ -1,16 +1,18 @@
-const getData = document.querySelector(".submit");
+const getData = document.querySelector(".getData");
 const body = document.querySelector("body");
+const ad = document.querySelector(".ad")
+const soyad = document.querySelector(".soyad")
+const id = document.querySelector(".id")
+const password = document.querySelector(".password")
 
-getData.addEventListener("click", function () {
+getData.addEventListener("submit", function (e) {
+    e.preventDefault()
   console.log("salam");
-  axios("https://ali-ju8t.onrender.com/users/").then((res) => {
-    console.log(res.data);
-
-    let arr = res.data;
-
-    for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i].LastName);
-      body.innerHTML += `<h3>${arr[i].LastName}</h3>`;
-    }
-  });
+  let obj={};
+  obj.ad=ad.value;
+  obj.soyad=soyad.value;
+  obj.id=id.value;
+  obj.password=password.value;
+  console.log(obj)
+  axios.post("https://ali-ju8t.onrender.com/users/",obj);
 });
